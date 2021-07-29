@@ -58,7 +58,7 @@ const Question = ({setFinished, socket, opponentFinished, finished, room, userna
     };
     const backToHome = () => {
         socket.emit('leave-room', {});
-        fetch(`${URL}/points`, {
+        fetch(`/points`, {
             body: JSON.stringify({username, point: myScore}),
             method: 'PUT',
             headers: {

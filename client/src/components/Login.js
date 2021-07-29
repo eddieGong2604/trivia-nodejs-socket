@@ -19,7 +19,7 @@ const Login = ({username, setUsername}) => {
             if (user.length < 3 || user.length > 6) {
                 setError("Name length must be between 3 and 6");
             } else {
-                fetch(`${URL}/login`, {
+                fetch(`/login`, {
                     body: JSON.stringify({username: user}),
                     method: 'POST',
                     headers: {
