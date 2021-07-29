@@ -37,7 +37,7 @@ const server = app.listen(8080, function () {
 // Socket setup
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:3006",
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     }
 });
