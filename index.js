@@ -29,15 +29,17 @@ const db = mongoose.connection;
 
 app.use(userRoutes);
 
+const port = (process.env.PORT || 8080);
 
-const server = app.listen(8080, function () {
-    console.log(`Listening on port 8080`);
+
+const server = app.listen(port, function () {
+    console.log(`Listening on port ${port}`);
 });
 
 // Socket setup
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: `http://localhost:${port}`,
         methods: ["GET", "POST"],
     }
 });
