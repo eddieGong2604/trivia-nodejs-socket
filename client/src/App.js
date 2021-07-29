@@ -7,9 +7,8 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import io from "socket.io-client";
 import Competition from "./components/Competition";
 
-const ENDPOINT = "http://localhost:8080";
 
-const socket = io(ENDPOINT);
+const socket = io();
 
 const App = () => {
     const [username, setUsername] = useState("");
