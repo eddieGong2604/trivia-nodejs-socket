@@ -6,6 +6,7 @@ const URL = "http://localhost:8080";
 const Login = ({username, setUsername}) => {
     const [user, setUser] = useState("");
     const [error, setError] = useState("");
+    const [disableInput, setDisableInput] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -16,6 +17,8 @@ const Login = ({username, setUsername}) => {
     }
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
+            setDisableInput(true);
+            setError("Logging in...");
             if (user.length < 3 || user.length > 6) {
                 setError("Name length must be between 3 and 6");
             } else {
@@ -27,6 +30,7 @@ const Login = ({username, setUsername}) => {
                     }
 
                 }).then((e) => {
+
                     setError("");
                     setUsername(user);
                     window.localStorage.setItem("username", user);
@@ -35,18 +39,20 @@ const Login = ({username, setUsername}) => {
                     setError("Internet connection error.");
                 });
             }
+            setDisableInput(false);
         }
     }
     return (<div className="login-container">
             <div className="login">
                 <div>
                     Enter your name:
-                    <input required={true} minLength={3} maxLength={6} type="text" value={user} name="username"
+                    <input disabled={disableInput} required={true} minLength={3} maxLength={6} type="text" value={user}
+                           name="username"
                            onChange={handleChange} onKeyDown={handleKeyDown}/>
                     <div>{error && error}</div>
                 </div>
             </div>
-    </div>
+        </div>
 
     );
 }
